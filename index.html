@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="meta.title">Rebe Group LLC — Client Services</title>
+  <meta name="description" content="Rebe Group LLC provides tailored services to meet client needs." data-i18n-attr="content:meta.description" />
+  <meta name="theme-color" content="#ff2b2b" />
+  <link rel="icon" href="rebegroup-logo.png" type="image/png">
+  <style>
+    :root{
+      --brand:#ff2b2b;
+      --brand-dark:#b30000;
+      --brand-light:#fff5f5;
+      --bg:#ffffff;
+      --text:#111111;
+      --muted:#475569;
+      --line:#e2e8f0;
+      --radius:14px;
+      --shadow:0 10px 26px rgba(2,6,23,.08);
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; font:16px/1.65 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,sans-serif; color:var(--text); background:var(--bg); overflow-x:hidden}
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+    .wrap{max-width:var(--max); margin:auto; padding:0 20px}
+
+    header{position:sticky; top:0; z-index:20; background:rgba(255,255,255,.88); backdrop-filter:blur(6px); border-bottom:1px solid var(--line)}
+    .nav{display:flex; justify-content:space-between; align-items:center; height:72px}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800}
+    .brand img{height:32px; width:auto}
+    nav ul{display:flex; gap:22px; list-style:none; margin:0; padding:0}
+    .menu-btn{display:none}
+    .btn{padding:10px 16px; border-radius:12px; font-weight:700; border:1px solid var(--brand); background:var(--brand); color:#fff; cursor:pointer}
+    .btn.secondary{background:transparent; color:var(--brand-dark)}
+    .btn:hover{filter:brightness(.95)}
+
+    .lang-switch{display:flex; align-items:center; gap:8px}
+    .lang-switch select{padding:8px 10px; border:1px solid var(--line); border-radius:12px; background:#fff; font-weight:600}
+
+    .hero{position:relative; padding:96px 0 56px; background:radial-gradient(800px 400px at 15% -10%, var(--brand-light), transparent 60%)}
+    .hero h1{font-size:clamp(30px,4vw,44px); margin:0 0 10px; text-align:center}
+    .hero p{margin:0 0 18px; text-align:center; color:var(--muted)}
+    .hero .actions{display:flex; gap:10px; justify-content:center; flex-wrap:wrap}
+
+    section{padding:60px 0}
+    .section-head{display:flex; align-items:flex-end; justify-content:space-between; gap:12px; margin-bottom:18px; flex-wrap:wrap}
+    .section-head h2{margin:0; font-size:26px}
+    .muted{color:var(--muted)}
+
+    .rows{display:grid; gap:18px}
+    .row{display:grid; grid-template-columns:1fr 1fr; gap:18px; align-items:center}
+    .row:nth-child(even){direction:rtl}
+    .row:nth-child(even) > *{direction:ltr}
+    .tile{background:#fff; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); padding:20px}
+    .tile h3{margin:0 0 6px}
+    .tile p{margin:0; color:var(--muted)}
+    .illus{min-height:220px; border:1px dashed var(--line); border-radius:var(--radius); display:grid; place-items:center; color:#6b7280; overflow:hidden}
+    .illus img{width:100%; height:100%; object-fit:cover; object-position:center}
+
+    .band{background:linear-gradient(90deg, var(--brand), var(--brand-dark)); color:#fff; padding:28px 0}
+    .band .wrap{display:flex; gap:16px; align-items:center; justify-content:space-between; flex-wrap:wrap}
+
+    .about{display:grid; grid-template-columns:1.1fr .9fr; gap:20px}
+    .card{background:#fff; border:1px solid var(--line); border-left:4px solid var(--brand); border-radius:var(--radius); padding:20px; box-shadow:var(--shadow)}
+
+    details{margin-top:10px}
+    details > summary{cursor:pointer; font-weight:600; color:var(--brand-dark); list-style:none}
+    details > summary::-webkit-details-marker{display:none}
+
+    .carousel{position:relative; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; width:min(100%, 880px); margin-inline:auto}
+    .carousel .track{display:flex; transition:transform .4s ease; will-change:transform}
+    .carousel .slide{min-width:100%}
+    .carousel .slide figure{margin:0; aspect-ratio:16/9; height:auto; background:#0b1220; display:flex; align-items:center; justify-content:center}
+    .carousel .slide img{width:100%; height:100%; object-fit:cover; object-position:center; display:block}
+    .carousel button.cprev,
+    .carousel button.cnext{position:absolute; top:50%; transform:translateY(-50%); background:#fff; border:1px solid var(--line); border-radius:999px; width:38px; height:38px; display:grid; place-items:center; box-shadow:var(--shadow); cursor:pointer}
+    .carousel button.cprev{left:10px}
+    .carousel button.cnext{right:10px}
+    .carousel .dots{display:flex; gap:8px; justify-content:center; padding:12px}
+    .carousel .dots button{width:8px; height:8px; border-radius:999px; border:1px solid var(--brand-dark); background:transparent; cursor:pointer}
+    .carousel .dots button.active{background:var(--brand-dark)}
+
+    form{display:grid; gap:12px}
+    label{font-size:14px; color:var(--muted)}
+    input, textarea{width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--line); background:#fff}
+    textarea{min-height:110px}
+    .form-row{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+
+    footer{border-top:1px solid var(--line); padding:28px 0 40px; color:#64748b}
+    .foot{display:grid; grid-template-columns:2fr 1fr 1fr 1.2fr; gap:22px}
+    .foot ul{list-style:none; margin:0; padding:0; display:grid; gap:6px}
+
+    @media (max-width: 980px){
+      .row{grid-template-columns:1fr}
+      .about{grid-template-columns:1fr}
+      .foot{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 640px){
+      nav ul{display:none; position:absolute; top:72px; right:20px; background:#fff; border:1px solid var(--line); border-radius:12px; padding:14px; box-shadow:var(--shadow); max-width:calc(100vw - 40px)}
+      nav ul.show{display:grid}
+      .menu-btn{display:block}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#"><img src="rebegroup-logo.png" alt="Rebe Group LLC"><span>REBE GROUP LLC</span></a>
+      <nav>
+        <button class="menu-btn" onclick="document.querySelector('nav ul').classList.toggle('show')" aria-label="Toggle menu">☰</button>
+        <ul>
+          <li><a href="#services" data-i18n="nav.services">Services</a></li>
+          <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+          <li><a class="btn" href="#contact" data-i18n="nav.cta">Get Started</a></li>
+        </ul>
+      </nav>
+      <div class="lang-switch">
+        <label for="lang-select" class="muted" data-i18n="lang.label">Language</label>
+        <select id="lang-select" onchange="setLanguage(this.value)">
+          <option value="en">EN</option>
+          <option value="es">ES</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="wrap">
+      <h1 data-i18n="hero.title">Professional Services Tailored to Your Needs</h1>
+      <p data-i18n="hero.lead">We partner with organizations and individuals to design simple, effective solutions. Our model favors clarity over complexity, measurable outcomes over vague promises, and a cadence that keeps momentum without burning teams out.</p>
+      <div class="actions">
+        <a class="btn" href="#contact" data-i18n="hero.btnPrimary">Work With Us</a>
+        <a class="btn secondary" href="#services" data-i18n="hero.btnSecondary">Explore Services</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 data-i18n="services.title">Services</h2>
+        <p class="muted" data-i18n="services.sub">We adapt to meet the needs of every client we serve.</p>
+      </div>
+      <div class="rows">
+        <div class="row">
+          <div class="tile">
+            <h3 data-i18n="services.items.0.title">Consulting & Strategy</h3>
+            <p data-i18n="services.items.0.body">We help you clarify goals, prioritize initiatives, and define a path that aligns effort with impact. Engagements are structured so decisions become easier, not heavier.</p>
+            <details>
+              <summary data-i18n="services.items.0.summary">What you get</summary>
+              <div class="muted" data-i18n="services.items.0.more">Roadmapping workshops, simple scorecards, and a weekly pulse that keeps plans honest. We focus on the next three steps, not thirty.</div>
+            </details>
+          </div>
+          <div class="illus"><img src="img1.png" alt="Meeting and collaboration photo"></div>
+        </div>
+        <div class="row">
+          <div class="tile">
+            <h3 data-i18n="services.items.1.title">Operational Support</h3>
+            <p data-i18n="services.items.1.body">From execution help to process tweaks, we add capacity where it matters. The aim is to reduce friction in the day‑to‑day so teams can do their best work.</p>
+            <details>
+              <summary data-i18n="services.items.1.summary">What you get</summary>
+              <div class="muted" data-i18n="services.items.1.more">Lightweight SOPs, tooling suggestions, and implementation help. We measure cycle time, error rates, and handoff clarity to track progress.</div>
+            </details>
+          </div>
+          <div class="illus"><img src="img2.png" alt="Laptop and analytics photo"></div>
+        </div>
+        <div class="row">
+          <div class="tile">
+            <h3 data-i18n="services.items.2.title">Custom Solutions</h3>
+            <p data-i18n="services.items.2.body">When the problem is unique, we design a response that fits. Deliverables stay pragmatic: documents people read, dashboards people use, and workflows that last.</p>
+            <details>
+              <summary data-i18n="services.items.2.summary">What you get</summary>
+              <div class="muted" data-i18n="services.items.2.more">Templates, simple automations, and pilot runs that validate assumptions before scaling. Clear owners, clear timelines.</div>
+            </details>
+          </div>
+          <div class="illus"><img src="img3.png" alt="Finance and growth concept"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 data-i18n="gallery.title">Gallery</h2>
+      </div>
+    </div>
+    <div class="carousel" aria-label="Image carousel">
+      <button class="cprev" aria-label="Previous slide">‹</button>
+      <div class="track" id="carousel-track">
+        <div class="slide"><figure><img src="img1.png" alt="Workshop snapshot" loading="lazy" draggable="false"></figure></div>
+        <div class="slide"><figure><img src="img2.png" alt="Analytics snapshot" loading="lazy" draggable="false"></figure></div>
+        <div class="slide"><figure><img src="img3.png" alt="Growth snapshot" loading="lazy" draggable="false"></figure></div>
+      </div>
+      <button class="cnext" aria-label="Next slide">›</button>
+      <div class="dots" id="carousel-dots" aria-label="Slide dots"></div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about">
+      <div class="card">
+        <h3 data-i18n="about.title">About Rebe Group LLC</h3>
+        <p class="muted" data-i18n="about.body">We build long‑term relationships by making work easier for clients. Expect transparent communication, practical recommendations, and a steady cadence that keeps projects moving.</p>
+        <details>
+          <summary data-i18n="about.summary">How we work</summary>
+          <div class="muted" data-i18n="about.more">Short feedback loops, clear owners, and artifacts you can keep using after we’re gone. We prefer small pilots that scale only when results are proven.</div>
+        </details>
+      </div>
+      <div class="card">
+        <h3 data-i18n="principles.title">Principles</h3>
+        <ul style="margin:10px 0 0; padding-left:18px">
+          <li data-i18n="principles.items.0">Client‑focused approach</li>
+          <li data-i18n="principles.items.1">Commitment to quality</li>
+          <li data-i18n="principles.items.2">Continuous improvement</li>
+        </ul>
+        <details>
+          <summary data-i18n="principles.summary">What this looks like</summary>
+          <div class="muted" data-i18n="principles.more">We measure outcomes, not hours. Every engagement has a simple scorecard and one owner on our side who is accountable for progress.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 data-i18n="faq.title">FAQ</h2>
+        <p class="muted" data-i18n="faq.sub">Quick answers to common questions.</p>
+      </div>
+      <div class="about">
+        <div class="card">
+          <h3 data-i18n="faq.items.0.q">What kinds of clients do you work with?</h3>
+          <p class="muted" data-i18n="faq.items.0.a">A mix of small teams and growing organizations that value clarity and reliable delivery.</p>
+          <details><summary data-i18n="faq.items.0.summary">More detail</summary><div class="muted" data-i18n="faq.items.0.more">Engagements range from a few weeks to several months. We start small and expand scope only if it makes sense for both sides.</div></details>
+        </div>
+        <div class="card">
+          <h3 data-i18n="faq.items.1.q">How soon can we start?</h3>
+          <p class="muted" data-i18n="faq.items.1.a">Usually within 1–2 weeks, depending on scope and availability.</p>
+          <details><summary data-i18n="faq.items.1.summary">What to prepare</summary><div class="muted" data-i18n="faq.items.1.more">A short description of your objective, the constraints you’re working with, and any existing materials we should review first.</div></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="band">
+    <div class="wrap">
+      <h3 data-i18n="cta.band">Ready to achieve your objectives?</h3>
+      <a class="btn" href="#contact" style="background:#fff; color:var(--brand-dark); border-color:#fff" data-i18n="cta.button">Book a Call</a>
+    </div>
+  </div>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 data-i18n="contact.title">Contact</h2>
+        <p class="muted" data-i18n="contact.sub">Share your needs and we'll respond promptly.</p>
+      </div>
+      <div class="about">
+        <form class="card" action="https://formsubmit.co/d6f453009216336049dcbe60943191c0" method="POST">
+          <input type="hidden" name="_subject" value="New inquiry — Rebe Group LLC" data-i18n-attr="value:contact.form.subject" />
+          <div class="form-row">
+            <div>
+              <label data-i18n="contact.form.name">Name</label>
+              <input required name="name" placeholder="Your name" data-i18n-attr="placeholder:contact.form.namePh" />
+            </div>
+            <div>
+              <label data-i18n="contact.form.email">Email</label>
+              <input required type="email" name="email" placeholder="you@email.com" data-i18n-attr="placeholder:contact.form.emailPh" />
+            </div>
+          </div>
+          <div>
+            <label data-i18n="contact.form.message">Message</label>
+            <textarea required name="message" placeholder="How can we help?" data-i18n-attr="placeholder:contact.form.messagePh"></textarea>
+          </div>
+          <button class="btn" type="submit" data-i18n="contact.form.send">Send</button>
+        </form>
+        <div class="card">
+          <h3 data-i18n="contact.office.title">Office</h3>
+          <p class="muted">
+            2721 Ocean Blvd, apt 303<br/>Hollywood Florida &nbsp; ZIP: 33019
+          </p>
+          <p class="muted">rebegroup.contacts@gmail.com</p>
+          <details><summary data-i18n="contact.office.hours">Office hours</summary><div class="muted" data-i18n="contact.office.hoursRange">Mon–Fri, 9:00–17:00 (ET)</div></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap foot">
+      <div>
+        <div class="brand"><img src="rebegroup-logo.png" alt="rebegroup LLC"><span>REBE GROUP LLC</span></div>
+        <small>© <span id="year"></span> <span data-i18n="footer.company">Rebe Group LLC</span>. <span data-i18n="footer.rights">All rights reserved.</span></small>
+      </div>
+      <div>
+        <strong data-i18n="footer.col1">Company</strong>
+        <ul>
+          <li><a href="#services" data-i18n="nav.services">Services</a></li>
+          <li><a href="#gallery" data-i18n="nav.gallery">Gallery</a></li>
+          <li><a href="#about" data-i18n="nav.about">About</a></li>
+          <li><a href="#faq" data-i18n="nav.faq">FAQ</a></li>
+          <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <strong data-i18n="footer.col2">Legal</strong>
+        <ul>
+          <li><a href="#" data-i18n="footer.privacy">Privacy Policy</a></li>
+          <li><a href="#" data-i18n="footer.terms">Terms of Use</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // -------- Carousel --------
+    (function(){
+      const track = document.getElementById('carousel-track');
+      const dots = document.getElementById('carousel-dots');
+      if(!track || !dots) return;
+      const slides = Array.from(track.children);
+      let index = 0;
+      slides.forEach((_, i)=>{
+        const b = document.createElement('button');
+        b.setAttribute('aria-label', 'Go to slide ' + (i+1));
+        b.addEventListener('click', ()=>go(i));
+        dots.appendChild(b);
+      });
+      function update(){
+        track.style.transform = 'translateX(' + (-index*100) + '%)';
+        Array.from(dots.children).forEach((d,i)=>d.classList.toggle('active', i===index));
+      }
+      function go(i){
+        index = (i+slides.length)%slides.length;
+        update();
+      }
+      update();
+      document.querySelector('.carousel .cprev').addEventListener('click', ()=>go(index-1));
+      document.querySelector('.carousel .cnext').addEventListener('click', ()=>go(index+1));
+      let startX = null;
+      track.addEventListener('pointerdown', e=>{ startX = e.clientX; });
+      track.addEventListener('pointerup', e=>{
+        if(startX===null) return;
+        const dx = e.clientX - startX;
+        if(Math.abs(dx) > 40){ go(index + (dx<0 ? 1 : -1)); }
+        startX = null;
+      });
+    })();
+
+    // -------- i18n --------
+    const translations = {
+      en: {
+        "meta.title": "Rebe Group LLC — Client Services",
+        "meta.description": "Rebe Group LLC provides tailored services to meet client needs.",
+        "lang.label": "Language",
+        "nav.services": "Services",
+        "nav.gallery": "Gallery",
+        "nav.about": "About",
+        "nav.faq": "FAQ",
+        "nav.contact": "Contact",
+        "nav.cta": "Get Started",
+        "hero.title": "Professional Services Tailored to Your Needs",
+        "hero.lead": "We partner with organizations and individuals to design simple, effective solutions. Our model favors clarity over complexity, measurable outcomes over vague promises, and a cadence that keeps momentum without burning teams out.",
+        "hero.btnPrimary": "Work With Us",
+        "hero.btnSecondary": "Explore Services",
+        "services.title": "Services",
+        "services.sub": "We adapt to meet the needs of every client we serve.",
+        "services.items.0.title": "Consulting & Strategy",
+        "services.items.0.body": "We help you clarify goals, prioritize initiatives, and define a path that aligns effort with impact. Engagements are structured so decisions become easier, not heavier.",
+        "services.items.0.summary": "What you get",
+        "services.items.0.more": "Roadmapping workshops, simple scorecards, and a weekly pulse that keeps plans honest. We focus on the next three steps, not thirty.",
+        "services.items.1.title": "Operational Support",
+        "services.items.1.body": "From execution help to process tweaks, we add capacity where it matters. The aim is to reduce friction in the day‑to‑day so teams can do their best work.",
+        "services.items.1.summary": "What you get",
+        "services.items.1.more": "Lightweight SOPs, tooling suggestions, and implementation help. We measure cycle time, error rates, and handoff clarity to track progress.",
+        "services.items.2.title": "Custom Solutions",
+        "services.items.2.body": "When the problem is unique, we design a response that fits. Deliverables stay pragmatic: documents people read, dashboards people use, and workflows that last.",
+        "services.items.2.summary": "What you get",
+        "services.items.2.more": "Templates, simple automations, and pilot runs that validate assumptions before scaling. Clear owners, clear timelines.",
+        "gallery.title": "Gallery",
+        "gallery.sub": "A quick look at how we present ideas—replace images with your own when you’re ready.",
+        "about.title": "About Rebe Group LLC",
+        "about.body": "We build long‑term relationships by making work easier for clients. Expect transparent communication, practical recommendations, and a steady cadence that keeps projects moving.",
+        "about.summary": "How we work",
+        "about.more": "Short feedback loops, clear owners, and artifacts you can keep using after we’re gone. We prefer small pilots that scale only when results are proven.",
+        "principles.title": "Principles",
+        "principles.items.0": "Client‑focused approach",
+        "principles.items.1": "Commitment to quality",
+        "principles.items.2": "Continuous improvement",
+        "principles.summary": "What this looks like",
+        "principles.more": "We measure outcomes, not hours. Every engagement has a simple scorecard and one owner on our side who is accountable for progress.",
+        "faq.title": "FAQ",
+        "faq.sub": "Quick answers to common questions.",
+        "faq.items.0.q": "What kinds of clients do you work with?",
+        "faq.items.0.a": "A mix of small teams and growing organizations that value clarity and reliable delivery.",
+        "faq.items.0.summary": "More detail",
+        "faq.items.0.more": "Engagements range from a few weeks to several months. We start small and expand scope only if it makes sense for both sides.",
+        "faq.items.1.q": "How soon can we start?",
+        "faq.items.1.a": "Usually within 1–2 weeks, depending on scope and availability.",
+        "faq.items.1.summary": "What to prepare",
+        "faq.items.1.more": "A short description of your objective, the constraints you’re working with, and any existing materials we should review first.",
+        "cta.band": "Ready to achieve your objectives?",
+        "cta.button": "Book a Call",
+        "contact.title": "Contact",
+        "contact.sub": "Share your needs and we'll respond promptly.",
+        "contact.form.subject": "New inquiry — Rebe Group LLC",
+        "contact.form.name": "Name",
+        "contact.form.namePh": "Your name",
+        "contact.form.email": "Email",
+        "contact.form.emailPh": "you@email.com",
+        "contact.form.message": "Message",
+        "contact.form.messagePh": "How can we help?",
+        "contact.form.send": "Send",
+        "contact.office.title": "Office",
+        "contact.office.hours": "Office hours",
+        "contact.office.hoursRange": "Mon–Fri, 9:00–17:00 (ET)",
+        "footer.company": "Rebe Group LLC",
+        "footer.rights": "All rights reserved.",
+        "footer.col1": "Company",
+        "footer.col2": "Legal",
+        "footer.privacy": "Privacy Policy",
+        "footer.terms": "Terms of Use"
+      },
+      es: {
+        "meta.title": "Rebe Group LLC — Servicios para Clientes",
+        "meta.description": "Rebe Group LLC ofrece servicios a medida para satisfacer las necesidades de los clientes.",
+        "lang.label": "Idioma",
+        "nav.services": "Servicios",
+        "nav.gallery": "Galería",
+        "nav.about": "Acerca de",
+        "nav.faq": "Preguntas",
+        "nav.contact": "Contacto",
+        "nav.cta": "Comenzar",
+        "hero.title": "Servicios Profesionales Adaptados a Tus Necesidades",
+        "hero.lead": "Colaboramos con organizaciones y personas para diseñar soluciones simples y efectivas. Nuestro modelo prioriza la claridad sobre la complejidad, los resultados medibles sobre las promesas vagas y un ritmo que mantiene el impulso sin agotar a los equipos.",
+        "hero.btnPrimary": "Trabaja con Nosotros",
+        "hero.btnSecondary": "Explorar Servicios",
+        "services.title": "Servicios",
+        "services.sub": "Nos adaptamos para satisfacer las necesidades de cada cliente.",
+        "services.items.0.title": "Consultoría y Estrategia",
+        "services.items.0.body": "Te ayudamos a aclarar objetivos, priorizar iniciativas y definir un camino que alinee el esfuerzo con el impacto. Estructuramos los proyectos para que decidir sea más fácil, no más pesado.",
+        "services.items.0.summary": "Qué incluye",
+        "services.items.0.more": "Talleres de roadmap, tableros simples y un pulso semanal que mantiene los planes honestos. Nos enfocamos en los próximos tres pasos, no en treinta.",
+        "services.items.1.title": "Soporte Operativo",
+        "services.items.1.body": "Desde ayuda en la ejecución hasta ajustes de procesos, sumamos capacidad donde importa. El objetivo es reducir fricción en el día a día para que los equipos hagan su mejor trabajo.",
+        "services.items.1.summary": "Qué incluye",
+        "services.items.1.more": "POEs livianos, sugerencias de herramientas y apoyo en la implementación. Medimos tiempo de ciclo, tasas de error y claridad en los traspasos para seguir el progreso.",
+        "services.items.2.title": "Soluciones a Medida",
+        "services.items.2.body": "Cuando el problema es único, diseñamos una respuesta que encaja. Entregables pragmáticos: documentos que se leen, tableros que se usan y flujos que perduran.",
+        "services.items.2.summary": "Qué incluye",
+        "services.items.2.more": "Plantillas, automatizaciones simples y pilotos que validan supuestos antes de escalar. Propietarios claros, tiempos claros.",
+        "gallery.title": "Galería",
+        "gallery.sub": "Una vista rápida de cómo presentamos ideas — reemplaza las imágenes por las tuyas cuando quieras.",
+        "about.title": "Acerca de Rebe Group LLC",
+        "about.body": "Construimos relaciones a largo plazo facilitando el trabajo a los clientes. Espera comunicación transparente, recomendaciones prácticas y un ritmo constante que mantiene los proyectos avanzando.",
+        "about.summary": "Cómo trabajamos",
+        "about.more": "Bucles de feedback cortos, responsables claros y artefactos que podés seguir usando cuando ya no estemos. Preferimos pilotos pequeños que escalan solo con resultados probados.",
+        "principles.title": "Principios",
+        "principles.items.0": "Enfoque en el cliente",
+        "principles.items.1": "Compromiso con la calidad",
+        "principles.items.2": "Mejora continua",
+        "principles.summary": "Cómo se ve en la práctica",
+        "principles.more": "Medimos resultados, no horas. Cada proyecto tiene un tablero simple y una persona responsable de nuestro lado.",
+        "faq.title": "Preguntas Frecuentes",
+        "faq.sub": "Respuestas rápidas a las dudas más comunes.",
+        "faq.items.0.q": "¿Con qué tipo de clientes trabajan?",
+        "faq.items.0.a": "Una mezcla de equipos pequeños y organizaciones en crecimiento que valoran la claridad y la entrega confiable.",
+        "faq.items.0.summary": "Más detalle",
+        "faq.items.0.more": "Los proyectos duran desde unas semanas hasta varios meses. Empezamos pequeño y ampliamos solo si tiene sentido para ambas partes.",
+        "faq.items.1.q": "¿Cuándo podemos empezar?",
+        "faq.items.1.a": "Generalmente en 1–2 semanas, según el alcance y la disponibilidad.",
+        "faq.items.1.summary": "Qué preparar",
+        "faq.items.1.more": "Una breve descripción del objetivo, las restricciones con las que trabajás y cualquier material existente que debamos revisar primero.",
+        "cta.band": "¿Listo para alcanzar tus objetivos?",
+        "cta.button": "Agenda una Llamada",
+        "contact.title": "Contacto",
+        "contact.sub": "Contanos tus necesidades y responderemos a la brevedad.",
+        "contact.form.subject": "Nueva consulta — Rebe Group LLC",
+        "contact.form.name": "Nombre",
+        "contact.form.namePh": "Tu nombre",
+        "contact.form.email": "Correo electrónico",
+        "contact.form.emailPh": "tu@email.com",
+        "contact.form.message": "Mensaje",
+        "contact.form.messagePh": "¿Cómo podemos ayudar?",
+        "contact.form.send": "Enviar",
+        "contact.office.title": "Oficina",
+        "contact.office.hours": "Horarios de atención",
+        "contact.office.hoursRange": "Lun–Vie, 9:00–17:00 (ET)",
+        "footer.company": "Rebe Group LLC",
+        "footer.rights": "Todos los derechos reservados.",
+        "footer.col1": "Empresa",
+        "footer.col2": "Legal",
+        "footer.privacy": "Política de Privacidad",
+        "footer.terms": "Términos de Uso"
+      }
+    };
+
+    function applyI18n(lang){
+      // text nodes
+      document.querySelectorAll("[data-i18n]").forEach(el=>{
+        const key = el.getAttribute("data-i18n");
+        const val = translations[lang]?.[key];
+        if(typeof val === "string") el.textContent = val;
+      });
+      // attribute bindings: format data-i18n-attr="attr:key"
+      document.querySelectorAll("[data-i18n-attr]").forEach(el=>{
+        const entries = el.getAttribute("data-i18n-attr").split(",").map(s=>s.trim());
+        entries.forEach(pair=>{
+          const [attr,key] = pair.split(":");
+          const v = translations[lang]?.[key];
+          if(typeof v === "string") el.setAttribute(attr, v);
+        });
+      });
+      // <html lang="...">
+      document.documentElement.setAttribute("lang", lang);
+      // persist
+      localStorage.setItem("site.lang", lang);
+      // Update document title too (already handled via data-i18n on <title>, but set here for good measure for some browsers)
+      const t = translations[lang]["meta.title"];
+      if(t) document.title = t;
+    }
+
+    function setLanguage(lang){
+      if(!translations[lang]) return;
+      applyI18n(lang);
+      // update dropdown
+      const sel = document.getElementById("lang-select");
+      if(sel) sel.value = lang;
+    }
+
+    // initial language
+    (function(){
+      const saved = localStorage.getItem("site.lang") || (navigator.language||"en").startsWith("es") ? "es" : "en";
+      setLanguage(saved);
+    })();
+  </script>
+</body>
+</html>
